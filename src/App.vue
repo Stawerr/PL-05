@@ -10,7 +10,7 @@ import UserFormComponent from './components/userFormComponent.vue';
 
 export default {
   components: {
-    UserFormComponent,
+    UserFormComponent
   },
 };
 </script>

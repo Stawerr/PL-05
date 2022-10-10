@@ -1,9 +1,7 @@
-class addUser{
-    constructor(fname,lname,age){
-        this.fname = fname;
-        this.lname = lname;
-        this.age = age;
+export default class addUser{
+    constructor(){
+        this.fname = ''
+        this.lname = ''
+        this.age = ''
     }
 }
-
-export default addUser
