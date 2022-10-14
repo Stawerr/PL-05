@@ -31,8 +31,8 @@ export default {
         return {}
     },
     methods:{
-        editMode (item,i) {
-           this.$emit('updateUser',item,i) 
+        editMode (item) {
+           this.$emit('updateUser',item) 
         }
     }
 }
