@@ -1,20 +1,22 @@
 <template>
   <div>
-    <UserFormComponent></UserFormComponent>
+    <nav>
+    <router-link to="/"> UserDetail</router-link>
+    <router-link to="/users">Users</router-link>
+  </nav>
+    <router-view></router-view>
   </div>
 
 </template>
 
 <script >
-import UserFormComponent from './components/userFormComponent.vue';
+
 
 export default {
-  components: {
-    UserFormComponent
-  },
+
 };
 </script>
-
+import {RouterView,RouterLink} from 'vue-router'
 <style scoped>
 
 </style>

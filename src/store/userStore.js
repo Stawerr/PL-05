@@ -5,10 +5,12 @@ export const userStore = defineStore('userStore', {
     state: () => {
         return {
             users: [],
+            userEdit:[]
         }
     },
     getters: {
-        getUsers: (state) => state.users
+        getUsers: (state) => state.users,
+        getUserEdit: (state) => state.userEdit
     },
     actions: {
         add(user) {
@@ -23,6 +25,7 @@ export const userStore = defineStore('userStore', {
         update(user) {
             try {
                 this.users[this.users.findIndex(userFind => userFind.id == user.id)] = user
+                this.userEdit=user;
             } catch (error) {
                 throw error
             }
