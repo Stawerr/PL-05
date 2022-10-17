@@ -30,5 +30,8 @@ export const userStore = defineStore('userStore', {
                 throw error
             }
         },
+        cleanEdit(){
+            this.userEdit=[]
+        }
     },
 })

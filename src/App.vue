@@ -1,8 +1,8 @@
 <template>
   <div>
     <nav>
-    <router-link to="/"> UserDetail</router-link>
-    <router-link to="/users">Users</router-link>
+    <router-link :to="{name: 'userForm'}"> UserDetail</router-link>
+    <router-link :to="{name: 'userList'}">Users</router-link>
   </nav>
     <router-view></router-view>
   </div>

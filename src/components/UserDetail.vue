@@ -1,5 +1,5 @@
 <template>
-    <form @submit.prevent="onSubmitHandler($event)">
+    <form @submit.prevent="onSubmitHandler($event)" @reset="resetForm">
         <div class="form-group">
             <label for="fname">First name: </label>
             <input type="text" id="fname" name="fname" ref="fname" v-model="addUser.fname">
@@ -18,13 +18,13 @@
         <button type="submit" class="btn btn-primary" :value="changeTitleButoon">Send</button>
         <button type="reset" class="btn btn-primary" value="clear">Clear</button>
     </form>
-    {{userStoreT.getUserEdit}}
 </template>
 <script>
 import addUser from '../models/addUser';
 import isEmptyValue from '../validations/validUser';
 import {userStore} from '../store/userStore'
 import { mapActions } from 'pinia'
+import UsersVue from './Users.vue';
 
 export default {
     setup() {
@@ -38,7 +38,7 @@ export default {
             buttonTile: 'Send',
             editUserID:-1,
             isUpdate:false,
-            addUser: new addUser(),
+            addUser:this.userStoreT.getUserEdit ? this.userStoreT.getUserEdit : new addUser(),
             form:{
                 firstNameError: false,
                 lastNameError: false,
@@ -73,7 +73,7 @@ export default {
         },
         changeTitleButoon(){
             return this.addUser.id ? 'Update' :'Send'
-        }
+        },
     },
     methods: {
         onSubmitHandler(e) {
@@ -86,11 +86,21 @@ export default {
                 return
                 if(this.addUser.id){
                     this.userStoreT.update(this.addUser)
+                    this.resetForm()
                 }
                 else{
                     this.userStoreT.add(this.addUser)
-                    this.addUser = new addUser();
+                    this.resetForm()
                 }
+            },
+            resetForm() {
+                this.addUser = new addUser();
+                this.userStoreT.cleanEdit();
+                    this.form.firstNameError= false;
+                    this.form.lastNameError= false;
+                    this.form.ageError= false;
+                    this.form.genderError= false
+                this.form = {}
             },
         },
 }

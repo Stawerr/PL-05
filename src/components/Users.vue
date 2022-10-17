@@ -10,7 +10,7 @@
             </tr>
         </thead>
         <tr v-for="(item) in getUsers">
-            <td>{{item.fname}}</td>
+            <td><router-link :to="{name:'oneUser',params:{fname:item.fname,lname:item.lname,age:item.age}}">{{item.fname}}</Router-link></td>
             <td>{{item.lname}}</td>
             <td>{{item.age}}</td>
             <td>
@@ -26,6 +26,7 @@
 <script>
 import { mapState } from 'pinia'
 import {userStore} from '../../src/store/userStore'
+
 export default {
     data () {
         // initialize the store
@@ -38,6 +39,7 @@ export default {
     methods:{
         editMode (item) {
            this.userStoreT.update(item);
+           this.$router.push({ name: 'userForm' })
         }
     }
 }
